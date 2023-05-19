@@ -15,6 +15,18 @@ const clear = document.getElementById("clear");
 const colorEl = document.getElementById("color");
 const number = document.getElementById("number");
 
+increBtn.addEventListener("click", increaseSize);
+
+decreBtn.addEventListener("click", decreaseSize);
+
+colorEl.addEventListener("change", (e) => {
+  color = e.target.value;
+});
+
+clear.addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
 canvas.addEventListener("mousedown", (e) => {
   isPressed = true;
   x = e.offsetX;
@@ -63,4 +75,20 @@ function drawLine(x1, y1, x2, y2) {
   ctx.strokeStyle = color;
   ctx.lineWidth = size * 2;
   ctx.stroke();
+}
+
+function increaseSize() {
+  size += 5;
+  if (size >= 50) {
+    size = 50;
+  }
+  number.innerHTML = size;
+}
+
+function decreaseSize() {
+  size -= 5;
+  if (size <= 5) {
+    size = 5;
+  }
+  number.innerHTML = size;
 }
